@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('buku', [Controller::class, 'getAllBooks']);
+Route::get('users', [Controller::class, 'getAllUser']);
+Route::post('upload', [Controller::class,'uploadBooks']);

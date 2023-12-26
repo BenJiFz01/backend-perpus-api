@@ -23,12 +23,14 @@ class AuthController extends Controller
         $validator = Validator::make(request()->all(),[
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required'
+            'password' => 'required',
+            'repeat_password' => 'required'
         ]);
 
         if($validator->fails()){
             return response()->json($validator->messages());
         }
+
 
         $user = User::create([
             'name' => request('name'),
@@ -42,7 +44,11 @@ class AuthController extends Controller
             return response()->json(['message' => 'pendaftaran gagal']);
         }
 
+        
+
     }
+
+    
 
     /**
      * Get a JWT via given credentials.
