@@ -15,7 +15,9 @@ class product extends Model
         'tema',
         'judul',
         'penulis',
-        'deskripsi'
+        'deskripsi',
+        'created_at',
+        'updated_at'
     ];
 
 }

@@ -14,6 +14,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    public function deleteBooks(Request $request){
+        $id_req = $request->getContent();
+        $req1 = json_decode($id_req);
+        $id = product::find((string)$req1->id);
+
+        $id->delete();
+        $buku = product::all();
+        return $buku;
+    }
+
     public function getAllBooks(){
         $data = product::all();
         return $data;
@@ -28,14 +38,18 @@ class Controller extends BaseController
 
     public function uploadBooks(Request $request){
         $buku = new product;
+        $req = $request->getContent();
+        $req_test = json_decode($req);
+        
 
-        $buku->tema = $request->getContent('tema');
-        $buku->judul = $request->getContent();
-        $buku->penulis = $request->getContent();
-        $buku->deskripsi = $request->getContent();
+        $buku->judul = $req_test->judul;
+        $buku->tema = $req_test->tema;
+        $buku->deskripsi = $req_test->deskripsi;
+        $buku->penulis = $req_test->penulis;
 
         $buku->save();
-
-        return $buku;
+        $semua_buku = product::all();
+        return $semua_buku;
     }
+    
 }

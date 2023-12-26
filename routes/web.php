@@ -24,3 +24,4 @@ Route::get('/', function () {
 Route::get('buku', [Controller::class, 'getAllBooks']);
 Route::get('users', [Controller::class, 'getAllUser']);
 Route::post('upload', [Controller::class,'uploadBooks']);
+Route::delete('delete', [Controller::class,'deleteBooks']);
